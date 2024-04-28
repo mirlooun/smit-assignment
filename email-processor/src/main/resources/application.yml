@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: email-processor
+  rabbitmq:
+    host: localhost
+
+rabbitmq:
+  exchange:
+    name: email-topic-exchange

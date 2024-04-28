@@ -1,0 +1,123 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Uus meenetlus</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Sulge"
+    (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form
+    [formGroup]="procedureForm"
+    (ngSubmit)="onSubmit()"
+    #formDirective="ngForm"
+    novalidate>
+    <div class="form-group mb-2">
+      <label for="name" class="form-label">Nimi:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name" />
+      <div
+        *ngIf="
+          procedureForm.controls['name'].invalid &&
+          (procedureForm.controls['name'].dirty ||
+            procedureForm.controls['name'].touched)
+        ">
+        <div
+          class="invalid-feedback"
+          *ngIf="procedureForm.controls['name'].errors?.['required']">
+          Nimi tuleb sisestada.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-2">
+      <label for="email" class="form-label">E-post:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email" />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          procedureForm.controls['email'].invalid &&
+          (procedureForm.controls['email'].dirty ||
+            procedureForm.controls['email'].touched)
+        ">
+        <div
+          class="invalid-feedback"
+          *ngIf="procedureForm.controls['email'].errors?.['required']">
+          E-post tuleb sisestada.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="procedureForm.controls['email'].errors?.['email']">
+          Palun sisesta õige e-post.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-2">
+      <label for="identityCode" class="form-label">Isikukood:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="identityCode"
+        formControlName="identityCode" />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          procedureForm.controls['identityCode'].invalid &&
+          (procedureForm.controls['identityCode'].dirty ||
+            procedureForm.controls['identityCode'].touched)
+        ">
+        <div
+          class="invalid-feedback"
+          *ngIf="procedureForm.controls['identityCode'].errors?.['required']">
+          Isikukood tuleb sisestada.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="procedureForm.controls['identityCode'].errors?.['pattern']">
+          Isikukood peaks olema number.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-2">
+      <label for="reason" class="form-label">Põhjus:</label>
+      <textarea
+        class="form-control"
+        id="reason"
+        formControlName="reason"
+        rows="3"></textarea>
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          procedureForm.controls['reason'].invalid &&
+          (procedureForm.controls['reason'].dirty ||
+            procedureForm.controls['reason'].touched)
+        ">
+        <div
+          class="invalid-feedback"
+          *ngIf="procedureForm.controls['reason'].errors?.['required']">
+          Põhjus tuleb sisestada.
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="activeModal.close()">
+    Sulge
+  </button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="procedureForm.invalid"
+    (click)="onSubmit()">
+    Lisa meenetlus
+  </button>
+</div>

@@ -1,0 +1,27 @@
+spring.profiles.default: dev
+
+spring:
+  application:
+    name: api
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        generate-ddl: true
+        show-sql: false
+        format_sql: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/procedure
+    username: postgres
+    password: secret
+  hibernate:
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    hbm2ddl.auto: create-drop
+  rabbitmq:
+    host: localhost
+
+rabbitmq:
+  exchange:
+    name: email-topic-exchange
